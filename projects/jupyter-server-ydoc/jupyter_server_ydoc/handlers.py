@@ -263,15 +263,6 @@ class YDocWebSocketHandler(WebSocketHandler, JupyterHandler):
         """
         On connection open.
         """
-        # # Send read-only warning if applicable
-        # if self._is_read_only and self._lock_denied_reason:
-        #     warning_msg = {
-        #         "type": "warning",
-        #         "message": self._lock_denied_reason,
-        #         "readOnly": True
-        #     }
-        #     await self.send(self._encode_json_message(warning_msg))
-
         self.create_task(self._websocket_server.serve(self))
 
         if isinstance(self.room, DocumentRoom):
